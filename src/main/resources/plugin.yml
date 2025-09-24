@@ -3,7 +3,7 @@ version: 1.0.0
 main: com.thebyteslayer.tracker.TrackerPlugin
 api-version: 1.21
 author: TheByteSlayer
-description: A plugin that makes compasses point to players when named after them
+description: A plugin to track Players via compasses
 website: https://github.com/thebyteslayer/tracker
 
  
