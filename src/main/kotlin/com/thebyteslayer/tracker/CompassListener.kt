@@ -79,10 +79,10 @@ class CompassListener(private val compassTracker: CompassTracker) : Listener {
 
             val currentLore = meta.lore
             if (currentLore == null || !currentLore.contains(ChatColor.GRAY.toString() + "Tracking: " + targetName)) {
-                meta.lore = listOf(
+                meta.setLore(listOf(
                     ChatColor.GRAY.toString() + "Tracking: " + targetName,
                     ChatColor.DARK_GRAY.toString() + "Tracker Compass"
-                )
+                ))
                 compass.itemMeta = meta
             }
         }

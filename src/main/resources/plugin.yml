@@ -1,5 +1,5 @@
 name: Tracker
-version: 1.0.0
+version: 1.0.1
 main: com.thebyteslayer.tracker.TrackerPlugin
 api-version: 1.21
 author: TheByteSlayer

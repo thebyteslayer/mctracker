@@ -70,34 +70,31 @@ class CompassTracker(val plugin: TrackerPlugin) {
             targetLocation = getPortalLocationForPlayer(getOfflinePlayerUUID(targetName), holder.world)
         }
 
-        if (holder.world.environment == World.Environment.NORMAL) {
+        if (targetLocation != null) {
+            // In 1.21+, compasses always use lodestones
             val meta = compass.itemMeta as CompassMeta
-            if (meta.hasLodestone() || meta.isLodestoneTracked) {
+
+            // Clear any existing lodestone tracking first
+            if (meta.hasLodestone()) {
+                // Create a new compass without lodestone tracking
                 val freshCompass = ItemStack(Material.COMPASS)
-                val freshMeta = freshCompass.itemMeta as CompassMeta
+                val freshMeta = freshCompass.itemMeta
 
                 if (meta.hasDisplayName()) {
-                    freshMeta.setDisplayName(meta.displayName)
+                    freshMeta?.setDisplayName(meta.displayName)
                 }
                 if (meta.hasLore()) {
-                    freshMeta.lore = meta.lore
+                    freshMeta?.setLore(meta.lore)
                 }
 
                 compass.itemMeta = freshMeta
             }
-        }
 
-        if (targetLocation != null) {
-            if (holder.world.environment == World.Environment.NETHER ||
-                holder.world.environment == World.Environment.THE_END) {
-
-                val meta = compass.itemMeta as CompassMeta
-                meta.setLodestone(targetLocation)
-                meta.isLodestoneTracked = false
-                compass.itemMeta = meta
-            } else {
-                holder.compassTarget = targetLocation
-            }
+            // Set the lodestone to the target location
+            meta.setLodestone(targetLocation)
+            // Ensure lodestone tracking is disabled so it points to the lodestone location
+            meta.isLodestoneTracked = false
+            compass.itemMeta = meta
 
             compassTargets[holder.uniqueId] = targetName!!
         }
@@ -114,20 +111,8 @@ class CompassTracker(val plugin: TrackerPlugin) {
 
     private fun getDefaultPortalLocation(world: World): Location {
         if (world.environment == World.Environment.NORMAL) {
-            try {
-                val result = world.locateNearestStructure(
-                    world.spawnLocation,
-                    org.bukkit.generator.structure.StructureType.STRONGHOLD,
-                    1000,
-                    false
-                )
-                if (result != null) {
-                    return result.location
-                }
-            } catch (e: Exception) {
-                // Fallback if structure search fails
-            }
-
+            // For now, just return spawn location as default
+            // Structure location finding API has changed in newer versions
             return Location(world, 0.0, 64.0, 0.0)
         }
 
