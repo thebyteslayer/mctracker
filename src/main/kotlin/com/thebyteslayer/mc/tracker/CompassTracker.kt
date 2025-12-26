@@ -1,4 +1,4 @@
-package com.thebyteslayer.tracker
+package com.thebyteslayer.mc.tracker
 
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor

@@ -1,4 +1,4 @@
-package com.thebyteslayer.tracker
+package com.thebyteslayer.mc.tracker
 
 import org.bukkit.ChatColor
 import org.bukkit.entity.Player
@@ -17,7 +17,7 @@ class PlayerListener(private val compassTracker: CompassTracker) : Listener {
             if (onlinePlayer != player) {
                 val targetName = compassTracker.getCompassTarget(onlinePlayer.uniqueId)
                 if (targetName != null && targetName.equals(player.name, ignoreCase = true)) {
-                    onlinePlayer.sendMessage(ChatColor.GREEN.toString() + player.name + " has joined! Your compass will now track them.")
+                    onlinePlayer.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a${player.name} &7has &ajoin&ed. &7Your compass will now &atrack &7them."))
                 }
             }
         }
@@ -34,7 +34,7 @@ class PlayerListener(private val compassTracker: CompassTracker) : Listener {
             if (onlinePlayer != player) {
                 val targetName = compassTracker.getCompassTarget(onlinePlayer.uniqueId)
                 if (targetName != null && targetName.equals(player.name, ignoreCase = true)) {
-                    onlinePlayer.sendMessage(ChatColor.RED.toString() + player.name + " has left! Your compass will continue tracking their last known portal location.")
+                    onlinePlayer.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c${player.name} &7has &cleft. &7Your compass will continue &ctracking &7their last known &cportal location."))
                 }
             }
         }

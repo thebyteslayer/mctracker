@@ -1,4 +1,4 @@
-package com.thebyteslayer.tracker
+package com.thebyteslayer.mc.tracker
 
 import org.bukkit.plugin.java.JavaPlugin
 
@@ -14,11 +14,11 @@ class TrackerPlugin : JavaPlugin() {
         server.pluginManager.registerEvents(PortalListener(compassTracker!!), this)
 
 
-        logger.info("Tracker plugin has been enabled!")
+        logger.info("Tracker plugin has been enabled.")
     }
 
     override fun onDisable() {
         compassTracker?.cleanup()
-        logger.info("Tracker plugin has been disabled!")
+        logger.info("Tracker plugin has been disabled.")
     }
 }

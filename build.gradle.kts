@@ -3,8 +3,9 @@ plugins {
 }
 
 group = "com.thebyteslayer"
-version = "1.0.1"
-description = "A plugin that makes compasses point to players when named after them"
+version = "1.2.0"
+val minecraftVersion = "1.21.4"
+description = "A plugin to track players via compasses named after them."
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -19,7 +20,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-    compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:$minecraftVersion-R0.1-SNAPSHOT")
 }
 
 tasks {
@@ -32,8 +33,8 @@ tasks {
     }
 
     jar {
-        archiveBaseName.set("tracker")
-        archiveVersion.set("1.0.1")
+        archiveBaseName.set("tracker-paper")
+        archiveVersion.set("${version}+mc${minecraftVersion}")
         from(sourceSets.main.get().output)
 
         // Include Kotlin runtime

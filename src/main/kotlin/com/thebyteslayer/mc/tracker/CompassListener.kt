@@ -1,4 +1,4 @@
-package com.thebyteslayer.tracker
+package com.thebyteslayer.mc.tracker
 
 import org.bukkit.ChatColor
 import org.bukkit.Material
@@ -78,10 +78,11 @@ class CompassListener(private val compassTracker: CompassTracker) : Listener {
             compassTracker.addCompassTarget(holder.uniqueId, targetName)
 
             val currentLore = meta.lore
-            if (currentLore == null || !currentLore.contains(ChatColor.GRAY.toString() + "Tracking: " + targetName)) {
+            val trackingLore = ChatColor.translateAlternateColorCodes('&', "&7Tracking: &a${targetName}")
+            if (currentLore == null || !currentLore.contains(trackingLore)) {
                 meta.setLore(listOf(
-                    ChatColor.GRAY.toString() + "Tracking: " + targetName,
-                    ChatColor.DARK_GRAY.toString() + "Tracker Compass"
+                    trackingLore,
+                    ChatColor.translateAlternateColorCodes('&', "&8Tracker Compass")
                 ))
                 compass.itemMeta = meta
             }
