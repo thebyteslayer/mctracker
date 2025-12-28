@@ -17,7 +17,7 @@ class PlayerListener(private val compassTracker: CompassTracker) : Listener {
             if (onlinePlayer != player) {
                 val targetName = compassTracker.getCompassTarget(onlinePlayer.uniqueId)
                 if (targetName != null && targetName.equals(player.name, ignoreCase = true)) {
-                    onlinePlayer.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a${player.name} &7has &ajoin&ed. &7Your compass will now &atrack &7them."))
+                    onlinePlayer.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a${player.name} &7has &ajoined. &7Your compass will now &atrack &7them."))
                 }
             }
         }

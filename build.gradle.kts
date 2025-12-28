@@ -5,6 +5,7 @@ plugins {
 group = "com.thebyteslayer"
 version = "1.2.0"
 val minecraftVersion = "1.21.4"
+val minecraftVersionDisplay = "1.21.x"
 description = "A plugin to track players via compasses named after them."
 
 java {
@@ -34,7 +35,7 @@ tasks {
 
     jar {
         archiveBaseName.set("tracker-paper")
-        archiveVersion.set("${version}+mc${minecraftVersion}")
+        archiveVersion.set("${version}+mc${minecraftVersionDisplay}")
         from(sourceSets.main.get().output)
 
         // Include Kotlin runtime
